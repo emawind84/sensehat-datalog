@@ -6,7 +6,7 @@
 		return {
 			load: function(){
 				return $http({
-					url: "http://192.168.0.10:1880/sensedata",
+					url: "/sensedata",
 					method: "GET",
 					params: {
 						
