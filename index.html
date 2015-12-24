@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="senseui">
+
+<head>
+	<title>AngularJS Binding</title>
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+	
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
+	<script type="text/javascript" src="main.js" ></script>
+	
+</head>
+
+<body>
+	
+	<div class="container">
+		<div class="page-header">
+			<h1>Sense Data</h1><small></small>
+		</div>
+		<div ng-controller="SenseDataController as ctrl">
+			
+			<table id="pretty-table" class="table table-condensed">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>Attend</th>
+						<th>Company</th>
+						<th>Department</th>
+						<th>Position</th>
+						<th>Name</th>
+						<th>Phone</th>
+						<th>e-mail</th>
+						<th>Submitted</th>
+					</tr>
+				</thead>
+				<tr ng-repeat="reg in ctrl.data">
+					<td>{{$index + 1}}</td>
+					<td>{{reg.attend}}</td>
+					<td>{{reg.company}}</td>
+					<td>{{reg.department}}</td>
+					<td>{{reg.position}}</td>
+					<td>{{reg.name}}</td>
+					<td>{{reg.phone}}</td>
+					<td>{{reg.email}}</td>
+					<td>{{reg.reg_date}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+</body>
+
+</html>
