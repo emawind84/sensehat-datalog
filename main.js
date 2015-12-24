@@ -6,7 +6,7 @@
 		return {
 			load: function(){
 				return $http({
-					url: "/sensedata",
+					url: "/sensedata/",
 					method: "GET",
 					params: {
 						
@@ -22,7 +22,7 @@
 		
 		sensedata.load().then(function(response){
 			$log.debug(response);
-			self.data = response;
+			self.data = response.data;
 		}, function(err){
 			$log.debug(err);
 		});
