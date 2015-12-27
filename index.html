@@ -2,7 +2,7 @@
 <html ng-app="senseui">
 
 <head>
-	<title>Sense HAT Sensor Data Monitoring</title>
+	<title>Sense HAT - Sensor Data Monitoring</title>
 	
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
@@ -12,7 +12,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<script type="text/javascript" src="/date.format.js"></script>
 	<script type="text/javascript" src="/paging/dirPagination.js"></script>
 	
 	<script type="text/javascript" src="main.js" ></script>
@@ -23,7 +24,7 @@
 	
 	<div class="container">
 		<div class="page-header">
-			<h2>Sense HAT Sensor Data Monitoring</h2>
+			<h3>Sense HAT - Sensor Data Monitoring</h3>
 		</div>
 		<div ng-controller="SenseDataController as ctrl">
 			<dir-pagination-controls></dir-pagination-controls>
@@ -36,11 +37,15 @@
 				<div class="container-fluid">
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<form class="navbar-form navbar-left" role="search">
-						<div class="form-group">
-							<input type="date" class="form-control" placeholder="Search">
-						</div>
-						<button type="submit" class="btn btn-default">Submit</button>
+						<form name="searchform" class="navbar-form navbar-left" role="search" novalidate 
+						ng-submit="loadData(criteria)">
+							<div class="form-group">
+								<label>From</label>
+								<input ng-model="criteria.fromdate" type="date" class="form-control" placeholder="yyyy-MM-dd">
+								<label>To</label>
+								<input ng-model="criteria.todate" type="date" class="form-control" placeholder="yyyy-MM-dd">
+							</div>
+							<button type="submit" class="btn btn-default">Submit</button>
 						</form>
 					</div>
 				</div>
@@ -100,7 +105,7 @@
 					<td>{{reg.gyro_x | number : 4 }}</td>
 					<td>{{reg.gyro_y | number : 4 }}</td>
 					<td>{{reg.gyro_z | number : 4 }}</td>
-					<td>{{reg.timestamp}}</td>
+					<td>{{reg.timestamp | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
 				</tr>
 			</table>
 			<dir-pagination-controls></dir-pagination-controls>
