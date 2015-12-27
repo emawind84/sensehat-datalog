@@ -2,7 +2,7 @@
 <html ng-app="senseui">
 
 <head>
-	<title>AngularJS Binding</title>
+	<title>Sense HAT Sensor Data Monitoring</title>
 	
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
@@ -13,6 +13,8 @@
 	
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
+	<script type="text/javascript" src="/paging/dirPagination.js"></script>
+	
 	<script type="text/javascript" src="main.js" ></script>
 	
 </head>
@@ -21,9 +23,30 @@
 	
 	<div class="container">
 		<div class="page-header">
-			<h1>Sense Data</h1><small></small>
+			<h2>Sense HAT Sensor Data Monitoring</h2>
 		</div>
 		<div ng-controller="SenseDataController as ctrl">
+			<dir-pagination-controls></dir-pagination-controls>
+			
+			<div class="dropdown">
+				
+			</div>
+			
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<form class="navbar-form navbar-left" role="search">
+						<div class="form-group">
+							<input type="date" class="form-control" placeholder="Search">
+						</div>
+						<button type="submit" class="btn btn-default">Submit</button>
+						</form>
+					</div>
+				</div>
+			</nav>
+			
+			<hr>
 			
 			<table id="pretty-table" class="table table-condensed">
 				<thead>
@@ -59,7 +82,7 @@
 						<th>Gyro. Z</th>
 					</tr>
 				</thead>
-				<tr ng-repeat="reg in ctrl.data">
+				<tr dir-paginate="reg in ctrl.data | itemsPerPage: 50">
 					<td>{{$index + 1}}</td>
 					<td>{{reg.temp_h | number : 2 }}</td>
 					<td>{{reg.temp_p | number : 2 }}</td>
@@ -71,16 +94,16 @@
 					<td>{{reg.mag_x | number : 2 }}</td>
 					<td>{{reg.mag_y | number : 2 }}</td>
 					<td>{{reg.mag_z | number : 2 }}</td>
-					<td>{{reg.acc_x | number : 2 }}</td>
-					<td>{{reg.acc_y | number : 2 }}</td>
-					<td>{{reg.acc_z | number : 2 }}</td>
-					<td>{{reg.gyro_x | number : 2 }}</td>
-					<td>{{reg.gyro_y | number : 2 }}</td>
-					<td>{{reg.gyro_z | number : 2 }}</td>
+					<td>{{reg.acc_x | number : 4 }}</td>
+					<td>{{reg.acc_y | number : 4 }}</td>
+					<td>{{reg.acc_z | number : 4 }}</td>
+					<td>{{reg.gyro_x | number : 4 }}</td>
+					<td>{{reg.gyro_y | number : 4 }}</td>
+					<td>{{reg.gyro_z | number : 4 }}</td>
 					<td>{{reg.timestamp}}</td>
 				</tr>
 			</table>
-			
+			<dir-pagination-controls></dir-pagination-controls>
 			<!-- pre>{{ctrl.data | json}}</pre -->
 		</div>
 	</div>

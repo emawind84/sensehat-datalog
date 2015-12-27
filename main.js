@@ -1,7 +1,7 @@
 (function (){
 	"use strict";
 	
-	angular.module('senseui', [])
+	angular.module('senseui', ['angularUtils.directives.dirPagination'])
 	.factory('sensedata', ['$http', function ($http){
 		return {
 			load: function(){
