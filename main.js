@@ -7,7 +7,7 @@
 			load: function(d){
 				$log.debug('Loading data with criteria: ', d);
 				return $http({
-					url: "/sensedata/",
+					url: "sensedata/",
 					method: "GET",
 					params: {
 						"fromdate": dateFilter(d.fromdate, 'yyyy-MM-dd'),
